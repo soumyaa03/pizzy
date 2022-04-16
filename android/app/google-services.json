@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "658508282381",
+    "project_id": "com-example-pizzy",
+    "storage_bucket": "com-example-pizzy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658508282381:android:2d9d13500b84728f8a3344",
+        "android_client_info": {
+          "package_name": "com.example.pizzy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "658508282381-f08jd3r0obc9rfbrgj1488562vl9riok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuwculntKOSdsj_Q244xg_V7-KhvGA64Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "658508282381-f08jd3r0obc9rfbrgj1488562vl9riok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
