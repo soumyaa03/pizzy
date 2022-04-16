@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
             Headers().headerMenu(context),
             const Divider(),
             Middle().middleFavtext(),
-            Middle().middleFavData(context, 'favourite')
+            Middle().middleFavData(context, 'fav')
           ],
         ),
       )),

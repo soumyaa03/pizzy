@@ -40,24 +40,28 @@ class Middle extends ChangeNotifier {
                   child: Lottie.asset('animations/pizza.json'),
                 );
               }
+
               return ListView.builder(
+                  shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: snapshot.data?.length,
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                       onTap: (() {}),
                       child: SizedBox(
+                        height: 120,
+                        width: 300,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Stack(
                               children: [
-                                SizedBox(
-                                  height: 180,
-                                  child: Image.network(
-                                      snapshot.data[index].data()['image']),
-                                ),
+                                // SizedBox(
+                                //   height: 180,
+                                //   child: Image.network(
+                                //       snapshot.data[index].data()['image']),
+                                // ),
                                 Positioned(
                                     left: 140,
                                     child: IconButton(
@@ -66,26 +70,27 @@ class Middle extends ChangeNotifier {
                                     ))
                               ],
                             ),
+
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: Text(
-                                snapshot.data[index].data()['name'],
+                                snapshot.data[index].data()['cat'],
                                 style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w200,
                                     color: Colors.black),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 4.0),
-                              child: Text(
-                                snapshot.data[index].data()['category'],
-                                style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w800,
-                                    color: Colors.red),
-                              ),
-                            )
+                            // Padding(
+                            //   padding: const EdgeInsets.only(top: 4.0),
+                            //   child: Text(
+                            //     snapshot.data[index].data()['category'],
+                            //     style: const TextStyle(
+                            //         fontSize: 16,
+                            //         fontWeight: FontWeight.w800,
+                            //         color: Colors.red),
+                            //   ),
+                            // )
                           ],
                         ),
                       ),
