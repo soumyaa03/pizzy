@@ -3,6 +3,8 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:pizzy/screens/detail_screen.dart';
 import 'package:pizzy/services/managedata.dart';
 import 'package:provider/provider.dart';
 
@@ -50,7 +52,15 @@ class Middle extends ChangeNotifier {
                   itemBuilder: (BuildContext context, int index) {
                     DocumentSnapshot data = snapshot.data[index];
                     return GestureDetector(
-                      onTap: (() {}),
+                      onTap: (() {
+                        Navigator.pushReplacement(
+                            context,
+                            PageTransition(
+                                child: DetailScreen(
+                                    queryDocumentSnapshot:
+                                        snapshot.data[index]),
+                                type: PageTransitionType.topToBottom));
+                      }),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: Container(
@@ -230,43 +240,47 @@ class Middle extends ChangeNotifier {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    data['cat'],
-                                    style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black),
-                                  ),
-                                  Text(
-                                    data['dis'],
-                                    style: const TextStyle(
-                                        decoration: TextDecoration.lineThrough,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black),
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        FontAwesomeIcons.rupeeSign,
-                                        size: 10,
-                                      ),
-                                      Text(
-                                        data['price'],
-                                        style: const TextStyle(
-                                            decoration:
-                                                TextDecoration.lineThrough,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.cyan),
-                                      ),
-                                    ],
-                                  )
-                                ],
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      data['cat'],
+                                      style: const TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                    ),
+                                    Text(
+                                      data['dis'],
+                                      style: const TextStyle(
+                                          decoration:
+                                              TextDecoration.lineThrough,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          FontAwesomeIcons.rupeeSign,
+                                          size: 10,
+                                        ),
+                                        Text(
+                                          data['price'],
+                                          style: const TextStyle(
+                                              decoration:
+                                                  TextDecoration.lineThrough,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.cyan),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
                               ),
                               SizedBox(
                                 height: 200,

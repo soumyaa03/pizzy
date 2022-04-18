@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pizzy/firebase_options.dart';
+import 'package:pizzy/helpers/footers.dart';
 import 'package:pizzy/helpers/headers.dart';
 import 'package:pizzy/helpers/middle.dart';
 import 'package:pizzy/screens/splash_screen.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(value: Headers()),
         ChangeNotifierProvider.value(value: Middle()),
-        ChangeNotifierProvider.value(value: ManageData())
+        ChangeNotifierProvider.value(value: ManageData()),
+        ChangeNotifierProvider.value(value: Footers()),
       ],
       child: MaterialApp(
         title: 'Pizzy',

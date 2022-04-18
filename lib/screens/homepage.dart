@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pizzy/helpers/footers.dart';
 import 'package:pizzy/helpers/headers.dart';
 import 'package:pizzy/helpers/middle.dart';
 
@@ -13,6 +14,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Footers().floatingActionButton(context),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
           child: Padding(
