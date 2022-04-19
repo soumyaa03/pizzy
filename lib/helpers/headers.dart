@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pizzy/services/maps.dart';
 
 class Headers extends ChangeNotifier {
   Widget appbar(BuildContext context) {
@@ -13,7 +14,7 @@ class Headers extends ChangeNotifier {
             children: [
               const Icon(FontAwesomeIcons.locationArrow),
               Text(
-                'Nayapalli',
+                finaladdress,
                 style: TextStyle(
                     color: Colors.grey.shade600,
                     fontSize: 12,

@@ -5,7 +5,9 @@ import 'package:pizzy/helpers/footers.dart';
 import 'package:pizzy/helpers/headers.dart';
 import 'package:pizzy/helpers/middle.dart';
 import 'package:pizzy/screens/splash_screen.dart';
+import 'package:pizzy/services/authentication.dart';
 import 'package:pizzy/services/managedata.dart';
+import 'package:pizzy/services/maps.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -26,6 +28,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: Middle()),
         ChangeNotifierProvider.value(value: ManageData()),
         ChangeNotifierProvider.value(value: Footers()),
+        ChangeNotifierProvider.value(value: GenerateMaps()),
+        ChangeNotifierProvider.value(value: Authentication())
       ],
       child: MaterialApp(
         title: 'Pizzy',
