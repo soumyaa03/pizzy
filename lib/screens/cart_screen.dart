@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:pizzy/miniviews/select_location.dart';
 import 'package:pizzy/screens/homepage.dart';
 
 class CartScreen extends StatefulWidget {
@@ -16,22 +20,24 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.only(left: 8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 40.0),
-              child: appBar(context),
-            ),
-            headerText(),
-            cartData(),
-            shippingData(
-              context,
-            )
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 40.0),
+                child: appBar(context),
+              ),
+              headerText(),
+              cartData(),
+              shippingData(
+                context,
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -75,7 +81,103 @@ class _CartScreenState extends State<CartScreen> {
 
   Widget cartData() {
     return SizedBox(
-      height: 300,
+      height: 400,
+      child: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance.collection('MyOrders').snapshots(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: Lottie.asset('animations/pizza.json'),
+              );
+            } else {
+              return ListView(
+                  children: snapshot.data.docs
+                      .map<Widget>((DocumentSnapshot documentSnapshot) {
+                return Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.shade500,
+                            blurRadius: 5,
+                            spreadRadius: 5)
+                      ]),
+                  height: 210,
+                  width: 400,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 8.0, top: 8.0, bottom: 8.0),
+                        child: SizedBox(
+                            height: 190,
+                            width: 180,
+                            child: Image.network(
+                              documentSnapshot['image'],
+                              fit: BoxFit.cover,
+                            )),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15, top: 4),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              documentSnapshot['name'],
+                              style: const TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24),
+                            ),
+                            Text(
+                              'price : ${documentSnapshot['price'].toString()}',
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                            Text(
+                              'onion : ${documentSnapshot['onion'].toString()}',
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                            Text(
+                              'cheese : ${documentSnapshot['cheese'].toString()}',
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                            Text(
+                              'corn : ${documentSnapshot['corn'].toString()}',
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                            CircleAvatar(
+                              backgroundColor: Colors.black,
+                              child: Text(
+                                documentSnapshot['size'].toString(),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }).toList());
+            }
+          }),
     );
   }
 
@@ -105,7 +207,15 @@ class _CartScreenState extends State<CartScreen> {
                     )
                   ],
                 ),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.edit))
+                IconButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          PageTransition(
+                              child: SelectLocation(),
+                              type: PageTransitionType.fade));
+                    },
+                    icon: const Icon(Icons.edit))
               ],
             ),
           ),

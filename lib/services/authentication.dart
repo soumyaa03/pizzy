@@ -11,7 +11,7 @@ class Authentication extends ChangeNotifier {
         .signInWithEmailAndPassword(email: email, password: password);
     User? user = userCredential.user;
     uid = user?.uid;
-    print('This is uid => $getUid');
+    // print('This is uid => $getUid');
     notifyListeners();
   }
 
@@ -20,7 +20,7 @@ class Authentication extends ChangeNotifier {
         .createUserWithEmailAndPassword(email: email, password: password);
     User? user = userCredential.user;
     uid = user?.uid;
-    print('This is uid => $getUid');
+    // print('This is uid => $getUid');
     notifyListeners();
   }
 }
