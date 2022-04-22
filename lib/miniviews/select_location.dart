@@ -17,7 +17,7 @@ class _SelectLocationState extends State<SelectLocation> {
     return Scaffold(
       body: Stack(
         children: [
-          Provider.of<GenerateMaps>(context, listen: false).fetchMaps(),
+          // Provider.of<GenerateMaps>(context, listen: false).fetchMaps(),
           Positioned(
               child: IconButton(
             onPressed: () {
