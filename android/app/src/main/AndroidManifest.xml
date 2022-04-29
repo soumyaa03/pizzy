@@ -22,7 +22,7 @@
                  to determine the Window background behind the Flutter UI. -->
             <meta-data
               android:name="com.google.android.geo.API_KEY"
-              android:value="AIzaSyBlGSkNgo5xBoTOdZ3dkZtampcTqtEZaiw"
+              android:value="AIzaSyCrj2DRn4GmHXVq0i7g7SyEoC7LBSlvZhg"
               
               />
             <intent-filter>

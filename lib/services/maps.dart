@@ -2,15 +2,16 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 String finaladdress = 'Searching adresss';
 
 class GenerateMaps extends ChangeNotifier {
   bool isLoaded = false;
+  late Position positionData;
+  Position get getposi => positionData;
 
   Future getLocation() async {
-    Position positionData = await Geolocator.getCurrentPosition();
+    positionData = await Geolocator.getCurrentPosition();
 
     List<Placemark> placemarks = await placemarkFromCoordinates(
         positionData.latitude, positionData.longitude);
